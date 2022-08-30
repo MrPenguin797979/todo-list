@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+body {
+  line-height: 1.5;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  outline: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+:root {
+  --bg-color: #191a2e;
+  --text-color: white;
+  --seclection-color: #b4d5fe;
+  --primary-color: #20e3b2;
+  --secondary-color: #00d664;
+  --primary-gradient: linear-gradient(
+    to right bottom,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  --secondary-gradient: linear-gradient(to right bottom, #ff416c, #ff4b2b);
+  --scroll-color: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+[data-theme=light] {
+  --bg-color: white;
+  --text-color: #191a2e;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-image: var(--scroll-color);
+  border-radius: 100rem;
+}
+
+::selection {
+  background-color: var(--seclection-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.todo {
+  --width: 500px;
+  --margin: 25px;
+  --gap: 15px;
+  --radius: 6px;
+  max-width: var(--width);
+  margin: var(--margin) auto;
+}
+.todo-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--margin);
+}
+.todo-text.completed {
+  text-decoration-line: line-through;
+}
+.todo-task {
+  width: 100%;
+  padding: var(--gap);
+  border: 0;
+  outline: 0;
+  border-radius: var(--radius) 0 0 var(--radius);
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.todo-task::-webkit-input-placeholder {
+  color: var(--text-color);
+}
+.todo-submit {
+  padding: var(--gap);
+  border: 0;
+  outline: 0;
+  background-image: var(--primary-gradient);
+  color: white;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--gap);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.todo-item:not(:first-of-type) {
+  margin-top: 15px;
+}
+.todo-action i:is(:first-of-type, :last-of-type) {
+  cursor: pointer;
+}
+.todo-action i:first-of-type {
+  background-image: var(--primary-gradient);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.todo-action i:last-of-type {
+  background-image: var(--secondary-gradient);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 767px) {
+  .todo {
+    max-width: 300px;
+  }
+}
+.toast {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.3s linear;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.toast-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+.toast:not(:first-of-type) {
+  margin-top: 20px;
+}
+.toast-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 100rem;
+  margin-right: 10px;
+}
+.toast-success {
+  background-image: var(--primary-gradient);
+}
+.toast-error {
+  background-image: var(--secondary-gradient);
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 10px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fade {
+  to {
+    opacity: 0;
+  }
+}
+.switch {
+  --gap: 10px;
+  position: fixed;
+  bottom: var(--gap);
+  left: var(--gap);
+  cursor: pointer;
+  width: 60px;
+  height: 35px;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 100rem;
+  transition: background-color 0.25s linear;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.switch:before {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 100rem;
+  background-color: white;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  transition: background-color 0.25s linear, left 0.25s linear;
+}
+.switch-input {
+  display: none;
+}
+.switch-input:checked ~ .switch {
+  background-image: var(--primary-gradient);
+}
+.switch-input:checked ~ .switch:before {
+  left: 30px;
+  background-color: white;
+}
+
+/*# sourceMappingURL=app.css.map */

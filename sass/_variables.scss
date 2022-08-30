@@ -1,0 +1,23 @@
+:root {
+  --bg-color: #191a2e;
+  --text-color: white;
+  --seclection-color: #b4d5fe;
+  --primary-color: #20e3b2;
+  --secondary-color: #00d664;
+  --primary-gradient: linear-gradient(
+    to right bottom,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  --secondary-gradient: linear-gradient(to right bottom, #ff416c, #ff4b2b);
+  --scroll-color: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+[data-theme="light"] {
+  --bg-color: white;
+  --text-color: #191a2e;
+}

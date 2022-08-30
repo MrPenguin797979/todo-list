@@ -1,0 +1,64 @@
+.todo {
+  --width: 500px;
+  --margin: 25px;
+  --gap: 15px;
+  --radius: 6px;
+  max-width: var(--width);
+  margin: var(--margin) auto;
+  &-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--margin);
+  }
+  &-text.completed {
+    text-decoration-line: line-through;
+  }
+  &-task {
+    width: 100%;
+    padding: var(--gap);
+    border: 0;
+    outline: 0;
+    border-radius: var(--radius) 0 0 var(--radius);
+    color: var(--text-color);
+    @include glassmorphism;
+    &::-webkit-input-placeholder {
+      color: var(--text-color);
+    }
+  }
+  &-submit {
+    padding: var(--gap);
+    border: 0;
+    outline: 0;
+    background-image: var(--primary-gradient);
+    color: white;
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--gap);
+    border-radius: var(--radius);
+    @include glassmorphism;
+    &:not(:first-of-type) {
+      margin-top: 15px;
+    }
+  }
+  &-action i {
+    &:is(:first-of-type, :last-of-type) {
+      cursor: pointer;
+    }
+    &:first-of-type {
+      @include textGradient(var(--primary-gradient));
+    }
+    &:last-of-type {
+      @include textGradient(var(--secondary-gradient));
+      margin-left: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .todo {
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,37 @@
+.switch {
+  --gap: 10px;
+  position: fixed;
+  bottom: var(--gap);
+  left: var(--gap);
+  cursor: pointer;
+  width: 60px;
+  height: 35px;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 100rem;
+  transition: background-color 0.25s linear;
+  @include glassmorphism;
+  &:before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 100rem;
+    background-color: white;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    transition: background-color 0.25s linear, left 0.25s linear;
+  }
+  &-input {
+    display: none;
+    &:checked ~ .switch {
+      background-image: var(--primary-gradient);
+      &:before {
+        left: 30px;
+        background-color: white;
+      }
+    }
+  }
+}

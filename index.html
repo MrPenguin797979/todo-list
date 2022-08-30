@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="./css/app.css" />
+  </head>
+  <body>
+    <div class="toast-wrapper"></div>
+
+    <div class="todo">
+      <form class="todo-form" autocomplete="off" spellcheck="false">
+        <input
+          type="text"
+          name="todo"
+          class="todo-task"
+          placeholder="Nhập việc cần làm"
+        />
+        <button class="todo-submit" type="submit">Thêm</button>
+      </form>
+      <div class="todo-list"></div>
+    </div>
+
+    <input type="checkbox" id="switch" class="switch-input" />
+    <label for="switch" class="switch"></label>
+
+    <script src="./js/app.js" type="module"></script>
+  </body>
+</html>
