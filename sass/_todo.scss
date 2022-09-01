@@ -5,6 +5,9 @@
   --radius: 6px;
   max-width: var(--width);
   margin: var(--margin) auto;
+  @include responsive(767px) {
+    max-width: 300px;
+  }
   &-form {
     display: flex;
     justify-content: center;
@@ -22,7 +25,7 @@
     color: var(--text-color);
     @include glassmorphism;
     &::-webkit-input-placeholder {
-      color: var(--text-color);
+      color: var(--placeholder-color);
     }
   }
   &-submit {
@@ -43,22 +46,27 @@
       margin-top: 15px;
     }
   }
-  &-action i {
-    &:is(:first-of-type, :last-of-type) {
+  &-action {
+    display: flex;
+    column-gap: 10px;
+    margin-left: 10px;
+    & i {
       cursor: pointer;
     }
-    &:first-of-type {
-      @include textGradient(var(--primary-gradient));
-    }
-    &:last-of-type {
-      @include textGradient(var(--secondary-gradient));
-      margin-left: 5px;
-    }
   }
-}
-
-@media screen and (max-width: 767px) {
-  .todo {
-    max-width: 300px;
+  &-completed {
+    @include textGradient(var(--primary-gradient));
+  }
+  &-remove {
+    @include textGradient(var(--secondary-gradient));
+  }
+  &-edit {
+    @include textGradient(var(--third-gradient));
+  }
+  &-text {
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

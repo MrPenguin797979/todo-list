@@ -4,6 +4,7 @@ const createTodo = (task) => {
     <div class="todo-item">
       <p class="todo-text">${task}</p>
       <div class="todo-action">
+        <i class="fas fa-edit todo-edit"></i>
         <i class="fas fa-check todo-completed"></i>
         <i class="fas fa-trash todo-remove"></i>
       </div>

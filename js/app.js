@@ -4,6 +4,9 @@ import completedTodo from "./todo/completedTodo.js";
 import renderTodos from "./todo/renderTodos.js";
 import renderToasts from "./toast/renderToasts.js";
 import switchTheme from "./switchTheme/switchTheme.js";
+import editTodo from "./todo/editTodo.js";
+import createModal from "./modal/createModal.js";
+import removeElement from "./element/removeElement.js";
 
 window.addEventListener("load", function () {
   const todoForm = document.querySelector(".todo-form");
@@ -13,8 +16,8 @@ window.addEventListener("load", function () {
   if (Array.isArray(todos) && todos.length > 0) renderTodos(todos);
 
   const lastValues = JSON.parse(localStorage.getItem("lastValues")) || [];
-  const toastDuration = 1;
-  const toastDelay = 2.5;
+  const TOAST_DURATION = 1;
+  const TOAST_DELAY = 2.5;
 
   function handleSubmitForm(e) {
     e.preventDefault();
@@ -23,7 +26,12 @@ window.addEventListener("load", function () {
     if (!todoValue) {
       return;
     } else if (lastValues.includes(todoValue)) {
-      renderToasts(toastDuration, toastDelay, "Không được trùng việc", "error");
+      renderToasts(
+        TOAST_DURATION,
+        TOAST_DELAY,
+        "Không được trùng việc",
+        "error"
+      );
       this.elements["todo"].value = "";
       return;
     }
@@ -33,7 +41,7 @@ window.addEventListener("load", function () {
     lastValues.push(todoValue);
     localStorage.setItem("lastValues", JSON.stringify(lastValues));
 
-    renderToasts(toastDuration, toastDelay, "Thêm việc thành công");
+    renderToasts(TOAST_DURATION, TOAST_DELAY, "Thêm việc thành công");
 
     todos.push({
       task: todoValue,
@@ -44,11 +52,27 @@ window.addEventListener("load", function () {
     this.elements["todo"].value = "";
   }
 
+  let todoValueBefore = "";
   document.body.addEventListener("click", function (e) {
     if (e.target.matches(".todo-remove")) {
       removeTodo(e.target, todos, lastValues);
     } else if (e.target.matches(".todo-completed")) {
       completedTodo(e.target, todos);
+    } else if (e.target.matches(".todo-edit")) {
+      const todoItem = e.target.parentNode.parentNode;
+      const todoText = todoItem.querySelector(".todo-text").textContent;
+      todoValueBefore = todoText;
+
+      createModal(todoText);
+
+      const modalContent = document.querySelector(".modal-content");
+      modalContent?.addEventListener("submit", function (e) {
+        e.preventDefault();
+        editTodo(todos, todoValueBefore, lastValues);
+      });
+    } else if (e.target.matches(".modal")) {
+      const modal = document.querySelector(".modal");
+      removeElement(modal);
     }
   });
 

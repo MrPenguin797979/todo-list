@@ -45,14 +45,17 @@ h6 {
   --bg-color: #191a2e;
   --text-color: white;
   --seclection-color: #b4d5fe;
+  --placeholder-color: #ccc;
   --primary-color: #20e3b2;
   --secondary-color: #00d664;
+  --gradient-dir: to right bottom;
   --primary-gradient: linear-gradient(
-    to right bottom,
+    var(--gradient-dir),
     var(--primary-color),
     var(--secondary-color)
   );
-  --secondary-gradient: linear-gradient(to right bottom, #ff416c, #ff4b2b);
+  --secondary-gradient: linear-gradient(var(--gradient-dir), #ff416c, #ff4b2b);
+  --third-gradient: linear-gradient(var(--gradient-dir), #d3cce3, #e9e4f0);
   --scroll-color: linear-gradient(
     to bottom,
     var(--primary-color),
@@ -63,6 +66,10 @@ h6 {
 [data-theme=light] {
   --bg-color: white;
   --text-color: #191a2e;
+  --placeholder-color: #999;
+}
+[data-theme=light] .modal-content {
+  background-color: var(--bg-color);
 }
 
 body {
@@ -70,6 +77,7 @@ body {
   font-weight: 600;
   background-color: var(--bg-color);
   color: var(--text-color);
+  transition: all 0.4s linear;
 }
 
 body::-webkit-scrollbar {
@@ -105,6 +113,11 @@ button {
   max-width: var(--width);
   margin: var(--margin) auto;
 }
+@media screen and (max-width: 767px) {
+  .todo {
+    max-width: 300px;
+  }
+}
 .todo-form {
   display: flex;
   justify-content: center;
@@ -127,7 +140,7 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .todo-task::-webkit-input-placeholder {
-  color: var(--text-color);
+  color: var(--placeholder-color);
 }
 .todo-submit {
   padding: var(--gap);
@@ -151,28 +164,39 @@ button {
 .todo-item:not(:first-of-type) {
   margin-top: 15px;
 }
-.todo-action i:is(:first-of-type, :last-of-type) {
+.todo-action {
+  display: flex;
+  column-gap: 10px;
+  margin-left: 10px;
+}
+.todo-action i {
   cursor: pointer;
 }
-.todo-action i:first-of-type {
+.todo-completed {
   background-image: var(--primary-gradient);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
 }
-.todo-action i:last-of-type {
+.todo-remove {
   background-image: var(--secondary-gradient);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  margin-left: 5px;
+}
+.todo-edit {
+  background-image: var(--third-gradient);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.todo-text {
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-@media screen and (max-width: 767px) {
-  .todo {
-    max-width: 300px;
-  }
-}
 .toast {
   display: flex;
   align-items: center;
@@ -266,6 +290,60 @@ button {
 .switch-input:checked ~ .switch:before {
   left: 30px;
   background-color: white;
+}
+
+.modal {
+  --radius: 10px;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  width: 600px;
+  height: 300px;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+@media screen and (max-width: 767px) {
+  .modal-content {
+    width: 300px;
+    height: 200px;
+  }
+}
+.modal-edit {
+  padding: 15px;
+  border-radius: inherit;
+  border: 0;
+  outline: 0;
+  color: var(--text-color);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.modal-edit::-webkit-input-placeholder {
+  color: var(--placeholder-color);
+}
+.modal-change {
+  margin-top: 50px;
+  padding: 15px 30px;
+  border: 0;
+  outline: 0;
+  border-radius: inherit;
+  color: white;
+  background-image: var(--primary-gradient);
 }
 
 /*# sourceMappingURL=app.css.map */

@@ -12,3 +12,9 @@
   background-clip: text;
   -webkit-background-clip: text;
 }
+
+@mixin responsive($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
