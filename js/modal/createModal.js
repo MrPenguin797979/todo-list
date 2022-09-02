@@ -4,7 +4,7 @@ const createModal = (todoText) => {
       <form class="modal-content">
         <input type="text" class="modal-edit" placeholder="${todoText}" />
         <div class="modal-action">
-          <button class="modal-exit">Hủy</button>
+          <div class="modal-exit">Hủy</div>
           <button class="modal-change" type="submit">Chỉnh sửa</button>
         </div>
       </form>

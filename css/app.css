@@ -351,6 +351,7 @@ button {
   border-radius: inherit;
   color: white;
   background-image: var(--primary-gradient);
+  cursor: pointer;
 }
 .modal-exit {
   background-image: var(--secondary-gradient);

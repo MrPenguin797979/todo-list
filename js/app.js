@@ -77,7 +77,7 @@ window.addEventListener("load", function () {
         e.preventDefault();
         editTodo(todos, todoValueBefore, lastValues);
       });
-    } else if (e.target.matches(".modal")) {
+    } else if (e.target.matches(".modal") || e.target.matches(".modal-exit")) {
       const modal = document.querySelector(".modal");
       removeElement(modal);
     }
