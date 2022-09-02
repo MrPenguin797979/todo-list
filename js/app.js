@@ -54,16 +54,23 @@ window.addEventListener("load", function () {
 
   let todoValueBefore = "";
   document.body.addEventListener("click", function (e) {
-    if (e.target.matches(".todo-remove")) {
+    if (e.target.matches(".todo-remove"))
       removeTodo(e.target, todos, lastValues);
-    } else if (e.target.matches(".todo-completed")) {
+    else if (e.target.matches(".todo-completed"))
       completedTodo(e.target, todos);
-    } else if (e.target.matches(".todo-edit")) {
+    else if (e.target.matches(".todo-edit")) {
       const todoItem = e.target.parentNode.parentNode;
       const todoText = todoItem.querySelector(".todo-text").textContent;
       todoValueBefore = todoText;
 
       createModal(todoText);
+
+      const MODAL_GAP = 15;
+      const modalEdit = document.querySelector(".modal-edit");
+      if (modalEdit) {
+        const modalEditWidth = modalEdit.offsetWidth + MODAL_GAP;
+        modalEdit.style.width = `${modalEditWidth}px`;
+      }
 
       const modalContent = document.querySelector(".modal-content");
       modalContent?.addEventListener("submit", function (e) {

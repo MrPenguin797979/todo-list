@@ -294,6 +294,7 @@ button {
 
 .modal {
   --radius: 10px;
+  --gap: 15px;
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.3);
@@ -322,7 +323,7 @@ button {
   }
 }
 .modal-edit {
-  padding: 15px;
+  padding: var(--gap);
   border-radius: inherit;
   border: 0;
   outline: 0;
@@ -336,7 +337,13 @@ button {
 .modal-edit::-webkit-input-placeholder {
   color: var(--placeholder-color);
 }
-.modal-change {
+.modal-action {
+  display: flex;
+  align-items: center;
+  column-gap: var(--gap);
+  border-radius: inherit;
+}
+.modal-change, .modal-exit {
   margin-top: 50px;
   padding: 15px 30px;
   border: 0;
@@ -344,6 +351,9 @@ button {
   border-radius: inherit;
   color: white;
   background-image: var(--primary-gradient);
+}
+.modal-exit {
+  background-image: var(--secondary-gradient);
 }
 
 /*# sourceMappingURL=app.css.map */
